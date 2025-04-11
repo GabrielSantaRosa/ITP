@@ -16,7 +16,7 @@ int main(){
         Total = Total + NumeroDigitado;
         Contador++;
     }
-    float MediaDosNumeros = 1.0 * Total / NumeroDeNumeros; // A divisão entre dois numeros inteiros no c++, resolta em um valor inteiro
+    float MediaDosNumeros = Total / NumeroDeNumeros; // A divisão entre dois numeros inteiros no c++, resolta em um valor inteiro
 
     cout << "A media " << MediaDosNumeros << endl;
 
