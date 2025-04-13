@@ -4,31 +4,22 @@ using namespace std;
 
 int main(){
 
-    int Numero;
-    cin >> Numero;
+    int QuantidadedeNumeros;
+    int NumeroMagico;
+    int Contador = 0;
+    int NumerosDaSequencia;
+    cin >> QuantidadedeNumeros >> NumeroMagico;
 
-    int NumeroAuxiliar = 1;
+    while(QuantidadedeNumeros > 0){
+        cin >> NumerosDaSequencia;
 
-    while(Numero >= NumeroAuxiliar)
-    {
-        for(int i = 1; NumeroAuxiliar >= i; i++)
-        {
-            if(NumeroAuxiliar == 1 || NumeroAuxiliar == Numero ){
-                cout << "*";
-            }
-            else{
-                if( i == 1 || i == NumeroAuxiliar ){
-                    cout << "*";
-                }
-                else{
-                    cout << " ";
-                }
-            }
+        if(NumerosDaSequencia == NumeroMagico){
+            Contador++;
         }
-
-        cout << endl;
-        NumeroAuxiliar++;
+        QuantidadedeNumeros--;
     }
+    
+    cout << Contador << endl;
 
     return 0;
 }

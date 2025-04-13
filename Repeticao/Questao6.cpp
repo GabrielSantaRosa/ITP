@@ -8,6 +8,7 @@ int main(){
     int NumeroMagico;
     int Contador = 0;
     int NumerosDaSequencia;
+    cin >> QuantidadedeNumeros >> NumeroMagico;
 
     while(QuantidadedeNumeros > 0){
         cin >> NumerosDaSequencia;
