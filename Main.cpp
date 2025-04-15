@@ -1,28 +1,15 @@
 #include <iostream>
-#include <iomanip>
 
 using namespace std;
 
 int main(){
 
-    int QuantidadeDeNumeros;
-    int NumeroPrimeiro;
-    int Contador = 0;
-    cin >> QuantidadeDeNumeros;
-    int NumeroSegundo = 0;
+    int CurupiraPorcoes, BoitataPorceos, BotoPorceos, MapaPorceos, IaraPorceos;
+    cin >> CurupiraPorcoes >> BoitataPorceos >> BotoPorceos >> MapaPorceos >> IaraPorceos;
+    int Total = 225;
+    Total += (300 * CurupiraPorcoes) + (1500 * BoitataPorceos) + (600 * BotoPorceos) + ( 1000 * MapaPorceos) + (150 * IaraPorceos);
 
-    for(int i = 0; QuantidadeDeNumeros > i; i++)
-    {
-        NumeroSegundo = NumeroPrimeiro;
-        cin >> NumeroPrimeiro;
-
-        if(NumeroPrimeiro != NumeroSegundo)
-        {
-            Contador++;
-        }
-    }
-
-    cout << Contador << endl;
+    cout << Total << endl;
 
     return 0;
 }
