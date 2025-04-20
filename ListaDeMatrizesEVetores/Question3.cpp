@@ -4,6 +4,8 @@ using namespace std;
 
 int main(){
 
+    //Não testei...
+
     int Tamanho = 10;
     int VectorA[Tamanho];
     int VectorB[Tamanho];
