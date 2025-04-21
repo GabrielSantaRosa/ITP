@@ -1,15 +1,24 @@
 #include <iostream>
 
-using namespace std;
+int calcularMDC(int a, int b) {
+    while (b != 0) {
+        int resto = a % b;
+        a = b;
+        b = resto;
+    }
+    return a;
+}
 
-int main(){
+int main() {
+    int N;
+    std::cin >> N;
 
-    int SizeVector = 30;
-    int Vector[30];
-
-    for(int i = 0; SizeVector > i ; i++)
-    {
-        cin >> Vector[i];
+    for (int i = 0; i < N; i++) {
+        int AmigoA, AmigoB;
+        std::cin >> AmigoA >> AmigoB;
+        
+        int MDC = calcularMDC(AmigoA, AmigoB);
+        std::cout << MDC << std::endl;
     }
 
     return 0;
