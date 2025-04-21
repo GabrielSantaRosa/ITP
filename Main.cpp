@@ -4,28 +4,12 @@ using namespace std;
 
 int main(){
 
-    int Tamanho = 10;
-    int VectorA[Tamanho];
-    int VectorB[Tamanho];
-    int VectorResultado[Tamanho];
-    string Resultado = "O Resultado foi possivel a partir da multiplicao a seguir ";
+    int SizeVector = 30;
+    int Vector[30];
 
-    for(int ContadorDoVectorA = 0; Tamanho > ContadorDoVectorA; ContadorDoVectorA++)
+    for(int i = 0; SizeVector > i ; i++)
     {
-        cin >> VectorA[ContadorDoVectorA];
-    }
-    for(int ContadorVectorB = 0; Tamanho > ContadorVectorB; ContadorVectorB++)
-    {
-        cin >> VectorB[ContadorVectorB];
-    }
-
-    for(int ContadorVectorResultado = 0; Tamanho > ContadorVectorResultado; ContadorVectorResultado++)
-    {
-        VectorResultado[ContadorVectorResultado] = VectorA[ContadorVectorResultado] * VectorB[ContadorVectorResultado];
-        cout << Resultado;
-        cout << VectorA[ContadorVectorResultado] << " * " << VectorB[ContadorVectorResultado];
-        cout << " isso e " << VectorResultado[ContadorVectorResultado];
-        cout << endl;
+        cin >> Vector[i];
     }
 
     return 0;
