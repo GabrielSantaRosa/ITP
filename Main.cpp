@@ -5,39 +5,48 @@ using namespace std;
 int main()
 {
 
-    int n;
-    cin >> n;
+    int N; cin >> N; //Numero de amigos que vão participar do bolão;
 
-    int Array[n];
+    int TamanhoArray = N * 2; //Cada amigo vai ter 2 lugares no array
+    int ArrayComValorApostaeCodjogador[TamanhoArray];
 
-    for(int i = 0; n > i; i++)
+    for(int i = 0; TamanhoArray > i; i++ )
     {
-        cin >> Array[i];
+        cin >> ArrayComValorApostaeCodjogador[i];
     }
 
-    int ContadorDeModa = 0; //O diferenciado
-    int PosicaoDoElemento;
-    for(int i = 0; (n - 1) > i; i++)
-    {
-        int controle = 1;
+    int CodJogadorVencedor; //Codigo do jogador vencedor
+    cin >> CodJogadorVencedor;
 
-        for(int ix = (i + 1) ; n > ix; ix++)
+    int TotalDasApostas; 
+    for(int i = 0; TamanhoArray > i; i+=2)
+    {
+        TotalDasApostas = TotalDasApostas + ArrayComValorApostaeCodjogador[i];
+    }  //laço que vai calcular o total de apostas, o i+=2 é para pega o valor resposdente a cada amigo;
+
+    cout << "Total:RS " << TotalDasApostas << endl;
+
+    int ValorGastoEmBebidas;
+    ValorGastoEmBebidas = TotalDasApostas / 0.10;
+    int RestoDepoisDasBebidas = TotalDasApostas - ValorGastoEmBebidas;
+    cout << ValorGastoEmBebidas << endl;
+    cout << RestoDepoisDasBebidas << endl;
+    int ArrayQueControlaAsApostaVencedoras[N] = {0};
+    int ControleDaposicaoDoAmigo = 0;
+    for(int i = 1; TamanhoArray > i; i+=2)
+    {
+        if(ArrayComValorApostaeCodjogador[i] == CodJogadorVencedor)
         {
-            if(Array[i] == Array[ix])
-            {
-                controle++;
-            }
+            ArrayQueControlaAsApostaVencedoras[ControleDaposicaoDoAmigo] = 1;
         }
-        if(controle >= ContadorDeModa)
-        {
-            PosicaoDoElemento = i;
-            ContadorDeModa = controle;
-        }
+        ControleDaposicaoDoAmigo++;
     }
 
-    cout << "Valor " << Array[PosicaoDoElemento] << " Se repeti " << ContadorDeModa << endl;
+    for(int i = 0; N > i; i++)
+    {
 
-    //Não funcionar para conjuntos bimodais, depois ajeitar um codigo para isso.
-    
+    }
+
+
     return 0;
 }
