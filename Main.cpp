@@ -2,45 +2,42 @@
 
 using namespace std;
 
-int main(){
+int main()
+{
 
-    int N,M;
-    cin >> N >> M;
+    int n;
+    cin >> n;
 
-    int VetorA[N], VetorB[M];
+    int Array[n];
 
-    for (int i = 0; N > i; i++)
+    for(int i = 0; n > i; i++)
     {
-        cin >> VetorA[i];
+        cin >> Array[i];
     }
 
-    // for (int i = 0; N > i; i++)
-    // {
-    //     cin >> VetorB[i];
-    // }
-
-    int vetorAresultado[N];
-    int menor;
-    for(int i = 0; N > i; i++)
+    int ContadorDeModa = 0; //O diferenciado
+    int PosicaoDoElemento;
+    for(int i = 0; (n - 1) > i; i++)
     {
-        
-        if(i == 0)
-        {
-            menor = VetorA[0];
-        }
+        int controle = 1;
 
-        int contador = i + 1;
-        while(N > contador)
+        for(int ix = (i + 1) ; n > ix; ix++)
         {
-            if(menor > VetorA[contador])
+            if(Array[i] == Array[ix])
             {
-                menor = VetorA[contador];
+                controle++;
             }
-            contador++;
         }
-        
-        vetorAresultado[i] = menor;
+        if(controle >= ContadorDeModa)
+        {
+            PosicaoDoElemento = i;
+            ContadorDeModa = controle;
+        }
     }
 
+    cout << "Valor " << Array[PosicaoDoElemento] << " Se repeti " << ContadorDeModa << endl;
+
+    //Não funcionar para conjuntos bimodais, depois ajeitar um codigo para isso.
+    
     return 0;
 }
