@@ -4,14 +4,9 @@ using namespace std;
 
 int main()
 {
-    int n; cin >> n;
+    int n, x ; cin >> n >> x;
 
-    int ArrayAmigosControles[n] = {0};
-
-    for(int i = 0; n > i; i++)
-    {
-        cout << ArrayAmigosControles[i];
-    }
+    cout << x;
 
     return 0;
 }
