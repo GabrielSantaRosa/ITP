@@ -5,25 +5,34 @@ using namespace std;
 int main()
 {
 
-    int NumeroDeCasos; cin >> NumeroDeCasos;
-
-    for(int i = 0; NumeroDeCasos > i ; i++)
+    bool Repete = true;
+    int contador = 0;
+    int VitoriasInter = 0, VitoriasGremio = 0, Empates = 0;
+    while(Repete)
     {
-        int x, y; cin >> x >> y;
-        int soma = 0;
+        int GolInter, GolGremio;
+        int SimOuNao;
+        contador +=1;
 
-        while(y > x + 1) 
-        {
-            if(x % 2 == 1 )
-            {
-                soma+=x; cout << " Controle ";
-            } 
-            x++;
-            cout << soma << "valor da Soma" << endl;
-        }
+        cin >> GolInter >> GolGremio;
 
-        cout << soma << " X" << endl;
+        if(GolInter > GolGremio) VitoriasInter+=1;
+        else if(GolInter < GolGremio) VitoriasGremio+=1;
+        else Empates+=1;
+
+        cout << "Novo grenal (1-sim 2-nao)" << endl;
+        cin >> SimOuNao;
+        if(SimOuNao == 2) Repete = false;
     }
+
+    cout << contador << " grenais" << endl;
+    cout << "Inter:" << VitoriasInter << endl;
+    cout << "Gremio:" << VitoriasGremio << endl;
+    cout << "Empates:" << Empates << endl;
+
+    if(VitoriasInter > VitoriasGremio) cout << "Inter venceu mais" << endl;
+    else if(VitoriasInter < VitoriasGremio) cout << "Inter venceu mais" << endl;
+    else cout << "Nao houve vencedor" << endl;
 
     return 0;
 }
