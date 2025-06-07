@@ -1,31 +1,25 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-int Maior(int array[], int tamanho)
+int mdc(int x, int y)
 {
-    int maior = array[0];
-    for(int i = 1; tamanho > i; i++)
+    int temp;
+    while (y != 0)
     {
-        if(array[i] > maior) maior = array[i];
-    }   
-    return maior;
+        temp = y;
+        y = x % y;
+        x = temp;
+    }
+    return x;
 }
+
 
 int main()
 {
-    int tam; cin >> tam;
 
-    int Array[tam];
-
-    for(int i = 0; tam > i; i++)
-    {
-        cin >> Array[i];
-    }
-
-    int MaiorElemento = Maior( Array, tam );
-
-    cout << "this is max number in array" <<MaiorElemento << '\n';
+    cout << mdc(40 , 50) << endl;
 
     return 0;
 }
