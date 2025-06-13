@@ -2,7 +2,7 @@
 
 using namespace std;
 
-float FunctionPiso(float Valor)
+int FunctionPiso(float Valor)
 {
     int piso = 0;
 
@@ -29,7 +29,7 @@ float FunctionPiso(float Valor)
     return piso;
 }
 
-float FunctionTeto(float valor)
+int FunctionTeto(float valor)
 {
     int teto = 0;
 
@@ -87,30 +87,7 @@ int Divisao(int dividendo, int divisor)
 
 int main()
 {
-
-    cout << Divisao(2,-1);
+    cout << FunctionTeto(-2.5) << " " << FunctionTeto(2.5) << " " << FunctionPiso(-2.5) << " " << FunctionPiso(2.5) << endl;
+    
     return 0;
 }
-
-
-    // if(dividendo > 0 && divisor > 0)
-    // {
-    //     while( divisor <= dividendo)
-    //     {
-    //         quociente++;
-    //         dividendo = dividendo - divisor;
-    //     }  
-    // } 
-    // //Certo
-
-    // else if( dividendo > 0 && divisor < 0 )
-    // {
-
-    //     divisor = -1 * divisor; 
-    //     while( divisor <= dividendo)
-    //     {
-    //         quociente++;
-    //         dividendo = dividendo - divisor;
-    //     }
-    //     quociente = -1 * quociente;
-    // }
