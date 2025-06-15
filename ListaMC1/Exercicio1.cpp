@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 //Topico 1, questão 1;
 int FunctionPiso(float Valor)
 {
@@ -61,7 +60,7 @@ int FunctionTeto(float valor)
 }
 
 //Topico 3, questão 1;
-int Divisao(int dividendo, int divisor)
+int Div(int dividendo, int divisor)
 {
     int quociente = 0;
 
@@ -74,7 +73,7 @@ int Divisao(int dividendo, int divisor)
                 dividendo = dividendo - divisor;
             } 
         }
-        if(divisor < 0)
+        else if(divisor < 0)
         {
             divisor = -1 * divisor; 
             while( divisor <= dividendo)
@@ -84,11 +83,60 @@ int Divisao(int dividendo, int divisor)
             }
             quociente = -1 * quociente;
         }
-    } 
+        else
+        {
+            cout << "Inderfinido" << endl;
+            return 0;
+        }
+    }
+    else if (dividendo < 0)
+    {
+        
+        if(divisor > 0) //Maior que 0
+        {
+            while(dividendo < 0)
+            {
+                //Coloquei que não pode ser 0 por que no caso quando o dividendo for igual a 0 quero que o algoritmo não seja mais ultilizando
+                //pois quando o dividendo for igual a 0 significar que o resultado de fato seria um numero inteiro
+                //Exemplo -15 div 3 = -5,   -15 = 3 * (-5) + 0, o nosso resto sempre tem que ser r >= 0 e r > divisor
+                quociente--;
+                dividendo = dividendo + divisor;
+            }
+            return quociente;
+        }
+        else if(divisor < 0) //Menor que 0
+        {
+            while(dividendo < 0)
+            {
+                quociente++;
+                dividendo = dividendo - divisor;
+            }
+            return quociente;
+        }
+        else
+        {
+            cout << "Inderfinido" << endl;
+        }
+    }
+
+    else
+    {
+        return dividendo;
+    }
     
     return quociente;
 }
 
+//Topico 4, questão 1
+int Mod(int dividendo, int divisor)
+{
+    int resto; 
+    //Lembrando que o resto tem que ser um numero positivo que pode ser 0 ou um numero menor que o divisor;
+    // dividendo = divisor * quociente + resto
+    resto = divisor * Div(dividendo,divisor) - dividendo;
+    if(resto < 0) resto*=-1;
+    return resto;
+}
 
 //Topico 5, questão 1;
 bool Ehprimo(const int x)
@@ -148,9 +196,6 @@ void Primosnointervalo(const int x, const int y)
 }
 
 int main()
-{
-    //cout << FunctionTeto(-2.5) << " " << FunctionTeto(2.5) << " " << FunctionPiso(-2.5) << " " << FunctionPiso(2.5) << endl;
-    // Primosnointervalo(1,100);
-    
+{   
     return 0;
 }
