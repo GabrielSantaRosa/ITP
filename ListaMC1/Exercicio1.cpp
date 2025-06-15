@@ -2,6 +2,8 @@
 
 using namespace std;
 
+
+//Topico 1, questão 1;
 int FunctionPiso(float Valor)
 {
     int piso = 0;
@@ -29,6 +31,7 @@ int FunctionPiso(float Valor)
     return piso;
 }
 
+//Topico 2, questão 1;
 int FunctionTeto(float valor)
 {
     int teto = 0;
@@ -57,6 +60,7 @@ int FunctionTeto(float valor)
     return teto;
 }
 
+//Topico 3, questão 1;
 int Divisao(int dividendo, int divisor)
 {
     int quociente = 0;
@@ -85,9 +89,68 @@ int Divisao(int dividendo, int divisor)
     return quociente;
 }
 
+
+//Topico 5, questão 1;
+bool Ehprimo(const int x)
+{
+    bool verificador = true;
+    int contador = 0;
+    for(int i = 1; x >= i; i++)
+    {
+        if(x % i == 0)
+        {
+            contador++;
+        }
+        if(contador > 2)
+        {
+            verificador = false;
+            break;
+        }
+    }
+    return verificador;
+}
+
+void mostraarray(int array[], int tamanho)
+{
+    for(int i = 0; tamanho > i; i++)
+    {
+        if(i + 1 == tamanho)
+        {
+            cout << array[i] << "." << endl;
+            break; 
+        }
+        cout << array[i] << ", ";
+    }
+}
+
+void Primosnointervalo(const int x, const int y)
+{
+    int maior = x;
+    int menor = y;
+    if(y > x)
+    {
+        maior = y;
+        menor = x;
+    }
+    if(menor == 1) menor++;
+    int Array[maior];
+    int indicedoarray = 0;
+    while(maior >= menor)
+    {
+        if(Ehprimo(menor) == true)
+        {
+            Array[indicedoarray] = menor;
+            indicedoarray++;
+        }
+        menor++;
+    }
+    mostraarray(Array, indicedoarray);
+}
+
 int main()
 {
-    cout << FunctionTeto(-2.5) << " " << FunctionTeto(2.5) << " " << FunctionPiso(-2.5) << " " << FunctionPiso(2.5) << endl;
+    //cout << FunctionTeto(-2.5) << " " << FunctionTeto(2.5) << " " << FunctionPiso(-2.5) << " " << FunctionPiso(2.5) << endl;
+    // Primosnointervalo(1,100);
     
     return 0;
 }
