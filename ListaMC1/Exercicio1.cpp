@@ -134,8 +134,7 @@ int Mod(int dividendo, int divisor)
     int resto; 
     //Lembrando que o resto tem que ser um numero positivo que pode ser 0 ou um numero menor que o divisor;
     // dividendo = divisor * quociente + resto
-    resto = divisor * Div(dividendo,divisor) - dividendo;
-    if(resto < 0) resto*=-1;
+    resto = dividendo - divisor * Div(dividendo,divisor);
     return resto;
 }
 
@@ -144,6 +143,10 @@ bool Ehprimo(const int x)
 {
     bool verificador = true;
     int contador = 0;
+    if(x == 1)
+    {
+        return false;
+    }
     for(int i = 1; x >= i; i++)
     {
         if(x % i == 0)
