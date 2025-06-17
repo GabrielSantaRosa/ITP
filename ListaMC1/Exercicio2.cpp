@@ -13,7 +13,7 @@ struct Cezar
 
 void Cifracezar(const Cezar cezar)
 {
-    string palavracifrada;
+    string palavracifrada(cezar.Palavra.length(), ' ');
     int tamanhodapalavra = cezar.Palavra.length();
     for(int i = 0; tamanhodapalavra > i; i++)
     {
