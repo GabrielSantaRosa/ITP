@@ -27,6 +27,7 @@ int FunctionPiso(float Valor)
             if(piso == Valor) break;
         }
     }
+    
     return piso;
 }
 
@@ -208,66 +209,52 @@ void Primosnointervalo(const int x, const int y)
 }
 
 int main() {
-    cout << "=== Iniciando testes ===" << endl;
-    
-    // Testes para FunctionPiso
-    cout << "\nTestes FunctionPiso:" << endl;
-    if(FunctionPiso(3.7) == 3) cout << "Passou no teste de piso(3.7) = 3" << endl;
-    else cout << "FALHOU no teste de piso(3.7) - esperado: 3, obtido: " << FunctionPiso(3.7) << endl;
-    
-    if(FunctionPiso(-2.3) == -3) cout << "Passou no teste de piso(-2.3) = -3" << endl;
-    else cout << "FALHOU no teste de piso(-2.3) - esperado: -3, obtido: " << FunctionPiso(-2.3) << endl;
-    
-    if(FunctionPiso(0.0) == 0) cout << "Passou no teste de piso(0.0) = 0" << endl;
-    else cout << "FALHOU no teste de piso(0.0) - esperado: 0, obtido: " << FunctionPiso(0.0) << endl;
 
-    // Testes para FunctionTeto
-    cout << "\nTestes FunctionTeto:" << endl;
-    if(FunctionTeto(3.2) == 4) cout << "Passou no teste de teto(3.2) = 4" << endl;
-    else cout << "FALHOU no teste de teto(3.2) - esperado: 4, obtido: " << FunctionTeto(3.2) << endl;
-    
-    if(FunctionTeto(-2.7) == -2) cout << "Passou no teste de teto(-2.7) = -2" << endl;
-    else cout << "FALHOU no teste de teto(-2.7) - esperado: -2, obtido: " << FunctionTeto(-2.7) << endl;
-    
-    if(FunctionTeto(0.0) == 0) cout << "Passou no teste de teto(0.0) = 0" << endl;
-    else cout << "FALHOU no teste de teto(0.0) - esperado: 0, obtido: " << FunctionTeto(0.0) << endl;
+    bool comecou = true;
 
-    // Testes para Div
-    cout << "\nTestes Div:" << endl;
-    if(Div(10, 3) == 3) cout << "Passou no teste de 10 div 3 = 3" << endl;
-    else cout << "FALHOU no teste de 10 div 3 - esperado: 3, obtido: " << Div(10, 3) << endl;
-    
-    if(Div(-11, 3) == -4) cout << "Passou no teste de -11 div 3 = -4" << endl;
-    else cout << "FALHOU no teste de -11 div 3 - esperado: -4, obtido: " << Div(-11, 3) << endl;
-    
-    if(Div(10, -3) == -3) cout << "Passou no teste de 10 div -3 = -3" << endl;
-    else cout << "FALHOU no teste de 10 div -3 - esperado: -3, obtido: " << Div(10, -3) << endl;
-    
-    if(Div(-10, -3) == 4) cout << "Passou no teste de -10 div -3 = 4" << endl;
-    else cout << "FALHOU no teste de -10 div -3 - esperado: 4, obtido: " << Div(-10, -3) << endl;
-    
-    // Testes para Mod
-    cout << "\nTestes Mod:" << endl;
-    if(Mod(10, 3) == 1) cout << "Passou no teste de 10 mod 3 = 1" << endl;
-    else cout << "FALHOU no teste de 10 mod 3 - esperado: 1, obtido: " << Mod(10, 3) << endl;
-    
-    if(Mod(-11, 3) == 1) cout << "Passou no teste de -11 mod 3 = 1" << endl;
-    else cout << "FALHOU no teste de -11 mod 3 - esperado: 1, obtido: " << Mod(-11, 3) << endl;
-    
-    if(Mod(10, -3) == 1) cout << "Passou no teste de 10 mod -3 = 1" << endl;
-    else cout << "FALHOU no teste de 10 mod -3 - esperado: 1, obtido: " << Mod(10, -3) << endl;
+    cout << "Escolhar as funcoes que voce ira ultilizar" << endl;
 
-    // Testes para Primosnointervalo
-    cout << "\nTestes Primosnointervalo:" << endl;
-    cout << "Primos entre 1 e 10 (deveria mostrar 2, 3, 5, 7): ";
-    Primosnointervalo(1, 10);
-    
-    cout << "Primos entre 10 e 20 (deveria mostrar 11, 13, 17, 19): ";
-    Primosnointervalo(10, 20);
-    
-    cout << "Primos entre -5 e 5 (deveria mostrar 2, 3, 5): ";
-    Primosnointervalo(-5, 5);
-
-    cout << "\n=== Fim dos testes ===" << endl;
+    while(comecou)
+    {
+        cout << "1 - Funcao Piso | 2 - Funcao teto | 3 - Divisao | 4 - Resto da Divisao | 5 - Primos entre o intervalo | 99 - Exit " << endl;
+        int x; cin >> x;  
+        if(x == 1)
+        {
+            cout << "Digite um numero" << endl;
+            float y; 
+            cin >> y;
+            cout << FunctionPiso(y) << endl;
+        }
+        if(x == 2)
+        {
+            cout << "Digite um numero" << endl;
+            float y; cin >> y;
+            cout << FunctionTeto(y) << endl;
+        }
+        if(x == 3)
+        {
+            cout << "Digite o dividendo e o divisor" << endl;
+            int dividendo,divisor; cin >> dividendo >> divisor;
+            cout << Div(dividendo,divisor) << endl;
+        }
+        if(x == 4)
+        {
+            cout << "Digite o dividendo e o divisor para a gente calcular o resto" << endl;
+            int dividendo,divisor; cin >> dividendo >> divisor;
+            cout << Mod(dividendo,divisor) << endl;
+        }
+        if(x == 5)
+        {
+            cout << "Digite dois numeros que irei mostras os primos no intervalor dos numeros" << endl;
+            int inicio,fim; cin >> inicio >> fim;
+            cout << Mod(inicio,fim) << endl;
+        }
+        if( x == 99)
+        {
+            comecou = false;
+        }
+        cout << "===================================" << endl;
+    }
+    cout << "Obrigado pela atencao" << endl;
     return 0;
 }
