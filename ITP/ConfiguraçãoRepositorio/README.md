@@ -2,6 +2,7 @@
 <p>git clone "é a URL do repositorio"</p>
 
 
+
 <h2> Para fazer commit no repositorio </h2>
 <p>git add .</p>
 <p>git commit -m 'Frase do commit'</p>
