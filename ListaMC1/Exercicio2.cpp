@@ -51,13 +51,27 @@ void Cifracezar(const Cezar cezar)
 
 int main()
 {
+    while(true)
+    {
+        cout << "1 - comecou || 99 - pra sair" << endl;
+        int x; cin >> x;    
 
-    Cezar cezar;
-    cout << "Digite uma palavra para se cifrada" << endl;
-    getline(cin, cezar.Palavra);
-    cout << "Digite o descolamento" << endl;
-    cin >> cezar.Deslocamento;
-    Cifracezar(cezar);
+        if(x == 1)
+        {
+            Cezar cezar;
+            cout << "Digite uma palavra para se cifrada" << endl;
+            cin.ignore(); // Para limpar o buffer da memoria.
+            getline(cin, cezar.Palavra);
+            cout << "Digite o descolamento" << endl;
+            cin >> cezar.Deslocamento;
+            Cifracezar(cezar);
+            cout << endl;
+        }
+        if(x == 99)
+        {
+            break;
+        }
+    }
 
     return 0;
 }

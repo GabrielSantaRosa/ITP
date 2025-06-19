@@ -4,30 +4,20 @@ using namespace std;
 
 int MDC(int x, int y)
 {
-    int maior = x;
-    int menor = y;
-    if( y > x)
-    {
-        maior = y;
-        menor = x;
-    }
     int resto;
-    while(menor != 0)
+    while(y != 0)
     {
-        resto = maior % menor;
-        maior = menor;
-        menor = resto;
+        resto = x % y;
+        x = y;
+        y = resto;
     }
-    return maior;
+    return x;
 }
 
-void Bezout(int x, int y)
-{
-    int m,n; // m <> 0 e n <> 0
-    //Mdc(x,y) = x * m + y * n;
-}
 
 int main()
 {
+    cout << MDC(50,10);
+    cout << MDC(10,50);
     return 0;
 }
