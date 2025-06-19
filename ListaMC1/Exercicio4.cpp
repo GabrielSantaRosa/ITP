@@ -26,6 +26,14 @@ void Exibe(Bizout b[], int tam)
 
 void AlgoritmoEstendidoEuclides(int a, int b)
 {
+    // a = abs(a);
+    // b = abs(b);
+    // if(b > a) 
+    // {
+    //     int temp = a;
+    //     a = b;
+    //     b = temp;
+    // }
     //Vamos considerar que o X seja maior que o y;
     int tamanhodoarraybizout = 1000; //Escolhi o a, pq não sei qual seria o tamanho exato do array
     Bizout bizout[tamanhodoarraybizout];
@@ -62,6 +70,6 @@ void AlgoritmoEstendidoEuclides(int a, int b)
 
 int main()
 {
-    AlgoritmoEstendidoEuclides(8, 8);
+    AlgoritmoEstendidoEuclides(-24, 18);
     return 0;
 }
