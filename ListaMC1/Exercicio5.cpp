@@ -83,15 +83,15 @@ int Mdc(int x, int y)
 
 int PotenciaModular(int base, int expoente, int modulo) {
     int resultado = 1;
-    base = base % modulo;  // Reduz a base inicial
+    base = base % modulo;
 
     while (expoente > 0) {
-        if (expoente % 2 == 1) {  // Expoente ímpar
+        if (expoente % 2 == 1) { //Entrar aqui quando for impar, e o na ultima interação o expoente vai ser 1, portanto a ultima vez que vai entrar nessa condição vai ser quando o expoente for igual a 1; 
             resultado = (resultado * base) % modulo;
         }
-        // Expoente agora é par (ou era par desde o início)
-        base = (base * base) % modulo;  // Quadratura da base
-        expoente = expoente / 2;       // Reduz o expoente pela metade
+        
+        base = (base * base) % modulo;  
+        expoente = expoente / 2; //usando a   
     }
 
     return resultado;
