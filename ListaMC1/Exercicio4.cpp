@@ -52,10 +52,6 @@ long long Div(long long dividendo, long long divisor)
             }
             return quociente;
         }
-        // else
-        // {
-        //     cout << "Inderfinido" << endl;
-        // }
     }
     else
     {
@@ -81,19 +77,6 @@ struct Bizout
     long long yBizo;
 };
 // a * x + b * y = mdc(x,y);
-
-// void Exibe(Bizout b[], long longtam)
-// {
-//     for(long longi = tam; i >= 0 ; i--)
-//     {
-//         cout << b[i].aBizo << endl;
-//         cout << b[i].bBizo << endl;
-//         cout << b[i].qBizo << endl;
-//         cout << b[i].xBizo << endl;
-//         cout << b[i].yBizo << endl;
-//         cout << "========" << endl;
-//     }
-// }
 
 void AlgoritmoEstendidoEuclides(long long a, long long b)
 {
