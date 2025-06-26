@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -61,7 +62,7 @@ void AlgoritmoEstendidoEuclides(long long a, long long b, long long &d)
     //cout << "(" <<a_guarda << " * " << VectorBizout[0].xBizo << ") + (" << b_guarda << " * " << VectorBizout[0].yBizo << ") = " << VectorBizout[qtdElementos].aBizo;
 }
 
-int MDC(int x, int y)
+int Mdc(int x, int y)
 {
     int maior = x;
     int menor = y;
@@ -80,7 +81,23 @@ int MDC(int x, int y)
     return maior;
 }
 
-void rsa(int p, int q, int e)
+int PotenciaModular(int base, int expoente, int modulo) {
+    int resultado = 1;
+    base = base % modulo;  // Reduz a base inicial
+
+    while (expoente > 0) {
+        if (expoente % 2 == 1) {  // Expoente ímpar
+            resultado = (resultado * base) % modulo;
+        }
+        // Expoente agora é par (ou era par desde o início)
+        base = (base * base) % modulo;  // Quadratura da base
+        expoente = expoente / 2;       // Reduz o expoente pela metade
+    }
+
+    return resultado;
+}
+
+void Rsa(int p, int q, int e)
 {
     int n = p * q;
     // Nosso N que é o produto entres o primos
@@ -89,7 +106,7 @@ void rsa(int p, int q, int e)
     // Nossa Função totiende que calcula a quantidade de 
     cout << totiende_n << endl;
 
-    while(MDC(e,totiende_n) != 1)
+    while(Mdc(e,totiende_n) != 1)
     {
         cout << "Digite um valor diferente para o e" << endl;
         cin >> e;
@@ -102,5 +119,5 @@ void rsa(int p, int q, int e)
 
 int main()
 {
-    rsa(7823, 8179, 65537);
+    Rsa(7823, 8179, 65537);
 }
