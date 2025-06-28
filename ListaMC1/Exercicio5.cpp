@@ -13,13 +13,13 @@ struct Bizout
     long long yBizo;
 };
 
-void AlgoritmoEstendidoEuclides(long long a, long long b, long long &d)
+long long AlgoritmoEstendidoEuclides(long long a, long long b)
 {
-    if(a == 0 && b == 0)
-    {
-        cout << "indefinido" << endl;
-        return;
-    }
+    // if(a == 0 && b == 0)
+    // {
+    //     cout << "indefinido" << endl;
+    //     return;
+    // }
 
     long long a_guarda = a;
     long long b_guarda = b;
@@ -57,9 +57,8 @@ void AlgoritmoEstendidoEuclides(long long a, long long b, long long &d)
         VectorBizout[i-1].yBizo = VectorBizout[i].xBizo - VectorBizout[i-1].qBizo * VectorBizout[i].yBizo;
     }
     
-    //cout << "X = " << VectorBizout[0].xBizo << " , Y = " << VectorBizout[0].yBizo << endl;
-    d = VectorBizout[0].xBizo;
-    //cout << "(" <<a_guarda << " * " << VectorBizout[0].xBizo << ") + (" << b_guarda << " * " << VectorBizout[0].yBizo << ") = " << VectorBizout[qtdElementos].aBizo;
+    long long d = VectorBizout[0].xBizo;
+    return d;
 }
 
 int Mdc(int x, int y)
@@ -81,8 +80,8 @@ int Mdc(int x, int y)
     return maior;
 }
 
-int PotenciaModular(int base, int expoente, int modulo) {
-    int resultado = 1;
+long long PotenciaModular(long long base, long long expoente, long long modulo) {
+    long long resultado = 1;
     base = base % modulo;
 
     while (expoente > 0) {
@@ -97,27 +96,63 @@ int PotenciaModular(int base, int expoente, int modulo) {
     return resultado;
 }
 
-void Rsa(int p, int q, int e)
+void ExibeMensagem(string mensagem)
 {
-    int n = p * q;
-    // Nosso N que é o produto entres o primos
-    cout << n << endl;
-    int totiende_n = (p - 1) * (q - 1);
-    // Nossa Função totiende que calcula a quantidade de 
-    cout << totiende_n << endl;
-
-    while(Mdc(e,totiende_n) != 1)
+    int tamanho = mensagem.length();
+    for(int i = 0; tamanho > i; i++)
     {
-        cout << "Digite um valor diferente para o e" << endl;
-        cin >> e;
+        cout << mensagem[i];
     }
+}
 
-    long long d;
-    AlgoritmoEstendidoEuclides( e, totiende_n, d);
-    cout << d << endl;
+void EncriptacaoPublico(string mensagem , long long n, long long e)
+{
+    int TamanhoDaMensagem = mensagem.length();
+
+    string mensagemencriptada= "";
+    for(int i = 0; TamanhoDaMensagem > i; i++)
+    {
+        if(mensagem[i] == ' ')
+        {
+            mensagemencriptada+=' ';
+        }
+        else 
+        {
+            int mens = mensagem[i];
+            long long c = PotenciaModular(mens, e, n);
+            int temp = c % 58;
+            if(c >=27 && c <= 33) c = 35; //Fiz isso por que na tabela ascii tem um caracteres especiais entre o 'Z' e o 'a';
+            mensagemencriptada+='A' + temp;
+        }
+    }
+    ExibeMensagem(mensagemencriptada);
+}
+
+void Rsa(string mensagem ,int p, int q, int e)
+{
+    int n = p * q; // Nosso N que é o produto entres o primos
+    cout << "Valor do N: " << n << endl;
+
+    int totiende = (p - 1) * (q - 1); // Nossa Função totiende que calcula a quantidade de 
+    cout << "Valor da funcao totiende de N: "<<totiende << endl;
+
+    while(Mdc(e,totiende) != 1)
+    {
+        //cout << "Digite um valor diferente para o e" << endl;
+        //cin >> e;
+        if(e % 2 == 1) e=+2;
+        else e=+1;
+    }
+    cout << "Valor de e: " << e << endl;
+    long long d = AlgoritmoEstendidoEuclides( e, totiende); //Inverso multiplicativo modular
+    if(d < 0) d+=totiende; 
+    cout << "Valor do inverso multiplicativo de e: "<< d << endl;
+
+    EncriptacaoPublico( mensagem, n ,e);
 }
 
 int main()
 {
-    Rsa(7823, 8179, 65537);
+    Rsa( "Gabriel Santa",61, 53, 17);
+    return 0;
 }
