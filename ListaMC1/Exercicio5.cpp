@@ -102,24 +102,38 @@ void ExibeMensagem(string mensagem, int tamanho)
     {
         cout << mensagem[i];
     }
+    cout << endl;
 }
 
-void DescriptografarPrivado(long long c, long long d, long long n)
+
+void DescriptografarPrivado(long long c[], int tamanhomensagem ,long long d, long long n)
 {
-    string letras = "ABCDEFGJHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    //string letras = "ABCDEFGJHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    string mensagemdescriptografada(tamanhomensagem, ' ');
+    long long m;
 
-    string tamanho;
-
-    //m = PotenciaModular(c, d, n);
+    for(int i = 0; tamanhomensagem > i; i++)
+    {
+        if(c[i] == 32)
+        {
+            mensagemdescriptografada[i] = 32;
+        }
+        else
+        {
+            long long m = PotenciaModular(c[i], d, n);
+            mensagemdescriptografada[i] = m;
+        }
+    }
+    cout << "Descriptografada: ";
+    ExibeMensagem(mensagemdescriptografada,tamanhomensagem);
 }
 
-void EncriptacaoPublico(string mensagem , int tamanhodamensagem,long long n, long long e)
+void EncriptacaoPublico(string mensagem , int tamanhodamensagem,long long n, long long e, long long arrayc[])
 {
     string letras = "ABCDEFGJHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     string mensagemencriptada= "";
 
-    long long arrayc[tamanhodamensagem];
     for(int i = 0; tamanhodamensagem > i; i++)
     {
         long long c;
@@ -127,7 +141,7 @@ void EncriptacaoPublico(string mensagem , int tamanhodamensagem,long long n, lon
         if(mensagem[i] == ' ')
         {
             mensagemencriptada+=' ';
-            c = -1;
+            c = 32; //Codigo do espaço na tabela ascii
         }
         else 
         {
@@ -136,40 +150,44 @@ void EncriptacaoPublico(string mensagem , int tamanhodamensagem,long long n, lon
             int temp = c % 52;
             mensagemencriptada+=letras[temp];
         }
+        arrayc[i] = c;
     }
+    cout << "Mensagem Encriptada: ";
     ExibeMensagem(mensagemencriptada, tamanhodamensagem);
 }
 
-void Rsa(string mensagem ,int p, int q, int e)
+void Rsa(string mensagem , long long p, long long q, long long e)
 {
-
-    int n = p * q; // Nosso N que é o produto entres o primos
+    long long int n = p * q; // Nosso N que é o produto entres o primos
     cout << "Valor do N: " << n << endl;
 
-    int totiende = (p - 1) * (q - 1); // Nossa Função totiende que calcula a quantidade de 
+    long long totiende = (p - 1) * (q - 1); // Nossa Função totiende que calcula a quantidade de 
     cout << "Valor da funcao totiende de N: "<<totiende << endl;
 
     while(Mdc(e,totiende) != 1)
     {
         //cout << "Digite um valor diferente para o e" << endl;
         //cin >> e;
-        if(e % 2 == 1) e=+2;
-        else e=+1;
+        if(e % 2 == 1) e+=2;
+        else e+=1;
     }
     cout << "Valor de e: " << e << endl;
     long long d = AlgoritmoEstendidoEuclides( e, totiende); //Inverso multiplicativo modular
     if(d < 0) d+=totiende; 
-    cout << "Valor do inverso multiplicativo de e: "<< d << endl;
+    cout << "Valor do inverso multiplicativo de e: "<< d << " que eh o nosso d" << endl;
 
     int tamanhodamensagem = mensagem.length();
-    int arrayvaloresencriptados[tamanhodamensagem];
+    long long arrayc[tamanhodamensagem] = {0};
 
-    EncriptacaoPublico( mensagem, tamanhodamensagem,n ,e);
-    ///DescriptografarPrivado()
+    EncriptacaoPublico(mensagem, tamanhodamensagem, n, e, arrayc);
+
+    DescriptografarPrivado(arrayc, tamanhodamensagem , d, n);
 }
 
 int main()
 {
-    Rsa( "Gabriel Santa",61, 53, 17);
+
+    Rsa("Gabriel Santa Rosa Cortez" , 7829, 7907 , 65537); 
     return 0;
+
 }
