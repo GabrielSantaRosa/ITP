@@ -14,12 +14,6 @@ struct Bizout
 
 long long AlgoritmoEstendidoEuclides(long long a, long long b)
 {
-    // if(a == 0 && b == 0)
-    // {
-    //     cout << "indefinido" << endl;
-    //     return;
-    // }
-
     long long a_guarda = a;
     long long b_guarda = b;
 
@@ -104,24 +98,17 @@ void ExibeMensagem(string mensagem, int tamanho)
     cout << endl;
 }
 
-
 void DescriptografarPrivado(long long c[], int tamanhomensagem ,long long d, long long n)
 {
-    //string letras = "ABCDEFGJHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     string mensagemdescriptografada(tamanhomensagem, ' ');
     long long m;
 
     for(int i = 0; tamanhomensagem > i; i++)
     {
-        if(c[i] == 32)
-        {
-            mensagemdescriptografada[i] = 32;
-        }
-        else
-        {
-            long long m = PotenciaModular(c[i], d, n);
-            mensagemdescriptografada[i] = m;
-        }
+
+        long long m = PotenciaModular(c[i], d, n);
+        mensagemdescriptografada[i] = m;
+
     }
     cout << "Descriptografada: ";
     ExibeMensagem(mensagemdescriptografada,tamanhomensagem);
@@ -129,26 +116,21 @@ void DescriptografarPrivado(long long c[], int tamanhomensagem ,long long d, lon
 
 void EncriptacaoPublico(string mensagem , int tamanhodamensagem,long long n, long long e, long long arrayc[])
 {
-    string letras = "ABCDEFGJHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-    string mensagemencriptada= "";
+    string mensagemencriptada(tamanhodamensagem, ' ');
 
     for(int i = 0; tamanhodamensagem > i; i++)
     {
         long long c;
-        
-        if(mensagem[i] == ' ')
+        int mens = mensagem[i];
+        c = PotenciaModular(mens, e, n);
+        int temp = c % 176;
+        //Verificação para não ser um caractere de controle
+        if( (temp >= 0 && temp <= 31) || temp == 127 )
         {
-            mensagemencriptada+=' ';
-            c = 32; //Codigo do espaço na tabela ascii
+            temp+=33;
         }
-        else 
-        {
-            int mens = mensagem[i];
-            c = PotenciaModular(mens, e, n);
-            int temp = c % 52;
-            mensagemencriptada+=letras[temp];
-        }
+        mensagemencriptada[i] = temp;
         arrayc[i] = c;
     }
     cout << "Mensagem Encriptada: ";
@@ -165,8 +147,6 @@ void Rsa(string mensagem , long long p, long long q, long long e)
 
     while(Mdc(e,totiende) != 1)
     {
-        //cout << "Digite um valor diferente para o e" << endl;
-        //cin >> e;
         if(e % 2 == 1) e+=2;
         else e+=1;
     }
@@ -186,7 +166,7 @@ void Rsa(string mensagem , long long p, long long q, long long e)
 int main()
 {
 
-    Rsa("Gabriel Santa Rosa Cortez" , 7829, 7907 , 65537); 
+    Rsa("5678" , 7829, 7907 , 65537); 
     return 0;
 
 }
