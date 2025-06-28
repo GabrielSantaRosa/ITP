@@ -96,40 +96,53 @@ long long PotenciaModular(long long base, long long expoente, long long modulo) 
     return resultado;
 }
 
-void ExibeMensagem(string mensagem)
+void ExibeMensagem(string mensagem, int tamanho)
 {
-    int tamanho = mensagem.length();
     for(int i = 0; tamanho > i; i++)
     {
         cout << mensagem[i];
     }
 }
 
-void EncriptacaoPublico(string mensagem , long long n, long long e)
+void DescriptografarPrivado(long long c, long long d, long long n)
 {
-    int TamanhoDaMensagem = mensagem.length();
+    string letras = "ABCDEFGJHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    string tamanho;
+
+    //m = PotenciaModular(c, d, n);
+}
+
+void EncriptacaoPublico(string mensagem , int tamanhodamensagem,long long n, long long e)
+{
+    string letras = "ABCDEFGJHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     string mensagemencriptada= "";
-    for(int i = 0; TamanhoDaMensagem > i; i++)
+
+    long long arrayc[tamanhodamensagem];
+    for(int i = 0; tamanhodamensagem > i; i++)
     {
+        long long c;
+        
         if(mensagem[i] == ' ')
         {
             mensagemencriptada+=' ';
+            c = -1;
         }
         else 
         {
             int mens = mensagem[i];
-            long long c = PotenciaModular(mens, e, n);
-            int temp = c % 58;
-            if(c >=27 && c <= 33) c = 35; //Fiz isso por que na tabela ascii tem um caracteres especiais entre o 'Z' e o 'a';
-            mensagemencriptada+='A' + temp;
+            c = PotenciaModular(mens, e, n);
+            int temp = c % 52;
+            mensagemencriptada+=letras[temp];
         }
     }
-    ExibeMensagem(mensagemencriptada);
+    ExibeMensagem(mensagemencriptada, tamanhodamensagem);
 }
 
 void Rsa(string mensagem ,int p, int q, int e)
 {
+
     int n = p * q; // Nosso N que é o produto entres o primos
     cout << "Valor do N: " << n << endl;
 
@@ -148,7 +161,11 @@ void Rsa(string mensagem ,int p, int q, int e)
     if(d < 0) d+=totiende; 
     cout << "Valor do inverso multiplicativo de e: "<< d << endl;
 
-    EncriptacaoPublico( mensagem, n ,e);
+    int tamanhodamensagem = mensagem.length();
+    int arrayvaloresencriptados[tamanhodamensagem];
+
+    EncriptacaoPublico( mensagem, tamanhodamensagem,n ,e);
+    ///DescriptografarPrivado()
 }
 
 int main()
