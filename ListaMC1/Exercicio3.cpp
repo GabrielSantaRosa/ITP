@@ -75,11 +75,12 @@ int MDC(int x, int y)
         maior = y;
         menor = x;
     }
-    
     int resto;
-    cout << maior << " eh maior que " << menor << endl;
+    
+    int passos = 1;
     while(menor != 0)
     {
+        cout << "Passo: " << passos << endl;
         resto = Mod(maior, menor);
         cout << "Resto da divisao de " << maior << " Por " << menor << " Eh " << resto << endl;
         cout << endl;
@@ -88,9 +89,10 @@ int MDC(int x, int y)
         menor = resto;
         cout << "Menor passar a ser o resto da divisao " << resto << endl;
         cout << endl;
+        passos++;
     }
 
-    cout << "eh o mdc ";
+    cout << "Valor do MDC ";
 
     return maior;
 }

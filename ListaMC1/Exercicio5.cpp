@@ -60,16 +60,16 @@ long long AlgoritmoEstendidoEuclides(long long a, long long b)
     return d;
 }
 
-int Mdc(int x, int y)
+int Mdc(long long x, long long y)
 {
-    int maior = x;
-    int menor = y;
+    long long maior = x;
+    long long menor = y;
     if( y > x)
     {
         maior = y;
         menor = x;
     }
-    int resto;
+    long long resto;
     while(menor != 0)
     {
         resto = maior % menor;
@@ -84,12 +84,12 @@ long long PotenciaModular(long long base, long long expoente, long long modulo) 
     base = base % modulo;
 
     while (expoente > 0) {
-        if (expoente % 2 == 1) { //Entrar aqui quando for impar, e o na ultima interação o expoente vai ser 1, portanto a ultima vez que vai entrar nessa condição vai ser quando o expoente for igual a 1; 
+        if (expoente % 2 == 1) {
             resultado = (resultado * base) % modulo;
         }
         
         base = (base * base) % modulo;  
-        expoente = expoente / 2; //usando a   
+        expoente = expoente / 2;   
     }
 
     return resultado;
@@ -107,7 +107,6 @@ void ExibeMensagem(string mensagem, int tamanho)
 
 void DescriptografarPrivado(long long c[], int tamanhomensagem ,long long d, long long n)
 {
-    //string letras = "ABCDEFGJHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     string mensagemdescriptografada(tamanhomensagem, ' ');
     long long m;
 
@@ -140,7 +139,7 @@ void EncriptacaoPublico(string mensagem , int tamanhodamensagem,long long n, lon
         if(mensagem[i] == ' ')
         {
             mensagemencriptada+=' ';
-            c = 32; //Codigo do espaço na tabela ascii
+            c = 32;
         }
         else 
         {
@@ -157,21 +156,21 @@ void EncriptacaoPublico(string mensagem , int tamanhodamensagem,long long n, lon
 
 void Rsa(string mensagem , long long p, long long q, long long e)
 {
-    long long int n = p * q; // Nosso N que é o produto entres o primos
+    cout << "Valor do p: " << p << endl;
+    cout << "Valor do q: " << q << endl;
+    long long int n = p * q;
     cout << "Valor do N: " << n << endl;
 
-    long long totiende = (p - 1) * (q - 1); // Nossa Função totiende que calcula a quantidade de 
+    long long totiende = (p - 1) * (q - 1);
     cout << "Valor da funcao totiende de N: "<<totiende << endl;
 
     while(Mdc(e,totiende) != 1)
     {
-        //cout << "Digite um valor diferente para o e" << endl;
-        //cin >> e;
         if(e % 2 == 1) e+=2;
         else e+=1;
     }
     cout << "Valor de e: " << e << endl;
-    long long d = AlgoritmoEstendidoEuclides( e, totiende); //Inverso multiplicativo modular
+    long long d = AlgoritmoEstendidoEuclides( e, totiende);
     if(d < 0) d+=totiende; 
     cout << "Valor do inverso multiplicativo de e: "<< d << " que eh o nosso d" << endl;
 
@@ -185,8 +184,30 @@ void Rsa(string mensagem , long long p, long long q, long long e)
 
 int main()
 {
+    bool comecou = true;
 
-    Rsa("Gabriel Santa Rosa Cortez" , 7829, 7907 , 65537); 
+    while(comecou)
+    {
+        int x; 
+        cout << "1 - Para Iniciar | 99 - Para Sair " << endl;
+        cin >> x;
+        if(x == 1)
+        {
+            string mensagem;
+            long long p, q;
+            cout << "Digite a palavra" << endl;
+            cin.ignore();
+            getline(cin, mensagem);
+            cout << "Digite dois numeros primos" << endl;
+            cin >> p >> q;
+            Rsa(mensagem , p, q, 17);
+        }
+        if(x == 99)
+        {
+            comecou = false;
+        }
+        cout << endl;
+    }
+    
     return 0;
-
 }

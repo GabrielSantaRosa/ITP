@@ -55,7 +55,7 @@ int main()
         {
             Cezar cezar;
             cout << "Digite uma palavra para se cifrada" << endl;
-            cin.ignore(); // Para limpar o buffer da memoria.
+            cin.ignore();
             getline(cin, cezar.Palavra);
             cout << "Digite o descolamento" << endl;
             cin >> cezar.Deslocamento;

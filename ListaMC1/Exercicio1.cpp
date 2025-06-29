@@ -98,9 +98,6 @@ int Div(int dividendo, int divisor)
         {
             while(dividendo < 0)
             {
-                //Coloquei que não pode ser 0 por que no caso quando o dividendo for igual a 0 quero que o algoritmo não seja mais ultilizando
-                //pois quando o dividendo for igual a 0 significar que o resultado de fato seria um numero inteiro
-                //Exemplo -15 div 3 = -5,   -15 = 3 * (-5) + 0, o nosso resto sempre tem que ser r >= 0 e r > divisor
                 quociente--;
                 dividendo = dividendo + divisor;
             }
@@ -133,8 +130,6 @@ int Div(int dividendo, int divisor)
 int Mod(int dividendo, int divisor)
 {
     int resto; 
-    //Lembrando que o resto tem que ser um numero positivo que pode ser 0 ou um numero menor que o divisor;
-    // dividendo = divisor * quociente + resto
     resto = dividendo - divisor * Div(dividendo,divisor);
     return resto;
 }

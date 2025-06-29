@@ -28,7 +28,6 @@ long long Div(long long dividendo, long long divisor)
         }
         else
         {
-            ///cout << "Inderfinido" << endl;
             return 0;
         }
     }
@@ -116,21 +115,47 @@ void AlgoritmoEstendidoEuclides(long long a, long long b)
     cout << "Esse eh o MDC " << a << endl;
 
     long long qtdElementos = VectorBizout.size() - 1; 
-    //Os endereços no vector comecam a contar aparti do 0;
 
     for(long long i = qtdElementos; i > 0; i--)
     {
         VectorBizout[i-1].xBizo = VectorBizout[i].yBizo;
         VectorBizout[i-1].yBizo = VectorBizout[i].xBizo - VectorBizout[i-1].qBizo * VectorBizout[i].yBizo; // y = x - q* y' (y anterior)
+
+        cout << "Passo " << qtdElementos - i + 1 << ":" << endl;
+        cout << VectorBizout[i-1].aBizo << " * " << VectorBizout[i-1].xBizo << " + " << VectorBizout[i-1].bBizo << " * " << VectorBizout[i-1].yBizo 
+        << " = " << VectorBizout[qtdElementos].aBizo << endl;
     }
 
+    cout << endl;
     cout << "X = " << VectorBizout[0].xBizo << " , Y = " << VectorBizout[0].yBizo << endl;
-
+    cout << endl;
     cout << "(" <<a_guarda << " * " << VectorBizout[0].xBizo << ") + (" << b_guarda << " * " << VectorBizout[0].yBizo << ") = " << VectorBizout[qtdElementos].aBizo;
+    cout << endl;
 }
 
 int main()
 {
-    AlgoritmoEstendidoEuclides(123456, 7890);
+
+    bool comecou = true;
+
+    while(comecou)
+    {
+        int x;
+        cout << "1 - Para Iniciar | 99 - Para Sair" << endl;
+        cin >> x;
+        if(x == 1)
+        {    
+            long long n1,n2;
+            cout << "Digites os dois valores" << endl;
+            cin >> n1 >> n2;
+            AlgoritmoEstendidoEuclides(n1, n2);
+        }
+        if(x == 99)
+        {
+            comecou = false;
+        }
+        cout << endl;
+    }
+
     return 0;
 }
