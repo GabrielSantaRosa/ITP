@@ -158,7 +158,7 @@ void Rsa(string mensagem , long long p, long long q, long long e)
 {
     cout << "Valor do p: " << p << endl;
     cout << "Valor do q: " << q << endl;
-    long long int n = p * q;
+    long long n = p * q;
     cout << "Valor do N: " << n << endl;
 
     long long totiende = (p - 1) * (q - 1);
