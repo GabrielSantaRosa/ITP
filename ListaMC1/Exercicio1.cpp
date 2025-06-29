@@ -140,79 +140,67 @@ int Mod(int dividendo, int divisor)
 }
 
 //Topico 5, questão 1;
-bool Ehprimo(const int x)
+void PrimosnoIntevalo(int n1, int n2)
 {
-    bool verificador = true;
-    int contador = 0;
-    if(x == 1)
-    {
-        return false;
-    }
-    for(int i = 1; x >= i; i++)
-    {
-        if(x % i == 0)
-        {
-            contador++;
-        }
-        if(contador > 2)
-        {
-            verificador = false;
-            break;
-        }
-    }
-    return verificador;
-}
+    if(n1 < 2) n1 = 2;
+    int tamanholista = (n2 - n1) + 1;
+    int arraydocrivo[tamanholista];
+    int arrayprimos[tamanholista];
 
-void mostraarray(int array[], int tamanho)
-{
-    for(int i = 0; tamanho > i; i++)
+    for(int i = 0; tamanholista > i; i++)
     {
-        if(i + 1 == tamanho)
+        arraydocrivo[i] = n1 + i;
+    }
+
+    int icontrole = 0;
+    for(int i = 2; n1 > i;i++)
+    {
+        while(tamanholista > icontrole)
         {
-            if(array[i] > 0)
+            if(arraydocrivo[icontrole] % i == 0)
             {
-            cout << array[i] << "." << endl;
-            break; 
+                arraydocrivo[icontrole] = 0;
+            }
+            icontrole++;
+        }
+        icontrole = i - 1;
+    }
+    
+    icontrole = 0;
+    int iprimo = 0;
+    while(n2 >= n1)
+    {
+        if(arraydocrivo[icontrole] == n1)
+        {
+            arrayprimos[iprimo] = n1;
+            iprimo++;
+
+            for(int i = icontrole + 1; tamanholista > i; i++)
+            {
+                if(arraydocrivo[i] % n1 == 0)
+                {
+                    arraydocrivo[i] = 0;
+                }
             }
         }
-        if(array[i] > 0)
-        {
-            cout << array[i] << ", ";
-        }
+        icontrole++;
+        n1++;
     }
+    
+    for(int i = 0; iprimo > i; i++)
+    {
+        cout << arrayprimos[i] << " ";
+    }
+    if(iprimo == 0) cout << "Sem nenhum primo no intervalo" << endl;
+    cout << endl;
 }
 
-void Primosnointervalo(const int x, const int y)
-{
-    //Vale lembra que o menor numero primo é o 2, portanto não existe numero negativo primo
-    //Pela difinição dos numeros numeros inteiros superiores a 1 que tenham dois divisores, o 1 e o proprio numero;
-    int maior = x;
-    int menor = y;
-    if(y > x)
-    {
-        maior = y;
-        menor = x;
-    }
-    if(menor == 1) menor++;
-    int Array[maior];
-    int indicedoarray = 0;
-    while(maior >= menor)
-    {
-        if(Ehprimo(menor) == true)
-        {
-            Array[indicedoarray] = menor;
-            indicedoarray++;
-        }
-        menor++;
-    }
-    mostraarray(Array, indicedoarray);
-}
 
 int main() {
 
     bool comecou = true;
 
-    cout << "Escolhar as funcoes que voce ira ultilizar" << endl;
+    cout << "Escolha as funcoes que voce ira ultilizar" << endl;
 
     while(comecou)
     {
@@ -247,7 +235,7 @@ int main() {
         {
             cout << "Digite dois numeros que irei mostras os primos no intervalor dos numeros" << endl;
             int inicio,fim; cin >> inicio >> fim;
-            cout << Mod(inicio,fim) << endl;
+            PrimosnoIntevalo(inicio,fim);
         }
         if( x == 99)
         {
@@ -255,6 +243,6 @@ int main() {
         }
         cout << "===================================" << endl;
     }
-    cout << "Obrigado pela atencao" << endl;
+
     return 0;
 }

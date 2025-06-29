@@ -121,9 +121,9 @@ void AlgoritmoEstendidoEuclides(long long a, long long b)
     for(long long i = qtdElementos; i > 0; i--)
     {
         VectorBizout[i-1].xBizo = VectorBizout[i].yBizo;
-        VectorBizout[i-1].yBizo = VectorBizout[i].xBizo - VectorBizout[i-1].qBizo * VectorBizout[i].yBizo;
+        VectorBizout[i-1].yBizo = VectorBizout[i].xBizo - VectorBizout[i-1].qBizo * VectorBizout[i].yBizo; // y = x - q* y' (y anterior)
     }
-    
+
     cout << "X = " << VectorBizout[0].xBizo << " , Y = " << VectorBizout[0].yBizo << endl;
 
     cout << "(" <<a_guarda << " * " << VectorBizout[0].xBizo << ") + (" << b_guarda << " * " << VectorBizout[0].yBizo << ") = " << VectorBizout[qtdElementos].aBizo;
@@ -131,6 +131,6 @@ void AlgoritmoEstendidoEuclides(long long a, long long b)
 
 int main()
 {
-    AlgoritmoEstendidoEuclides(15648742654, 4);
+    AlgoritmoEstendidoEuclides(123456, 7890);
     return 0;
 }

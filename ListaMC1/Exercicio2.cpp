@@ -18,16 +18,11 @@ void Cifracezar(const Cezar cezar)
     for(int i = 0; tamanhodapalavra > i; i++)
     {
         int x;
-        //Vejo se a letra é maiscular, se for entrar na validação
+
         if(isupper(cezar.Palavra[i]))
         {
             x = (cezar.Palavra[i] - 'A' + cezar.Deslocamento) % 26;
-            //Esse calculo é feito para o numero fica no intervalor de -25 a 25;
-            //Em sumo pego o numero da letra corresponde na tabela ascii, substraio pela letra 'A' e acrescento o descolamento;
             if(x < 0) x+=26;
-            //Vejo se o numero é positivo, se não for acrescento 26; 
-            //Exemplo: x = -1 -> x+=26 -> 25
-            //25 + 'A' = Z
             palavracifrada[i] = 'A' + x;
 
         }
@@ -53,7 +48,7 @@ int main()
 {
     while(true)
     {
-        cout << "1 - comecou || 99 - pra sair" << endl;
+        cout << "1 - Iniciar || 99 - Sair" << endl;
         int x; cin >> x;    
 
         if(x == 1)

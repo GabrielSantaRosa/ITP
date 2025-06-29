@@ -1,12 +1,13 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-
-void CrivodeAratostenes(int n1, int n2)
+//Topico 5, questão 1;
+void PrimosnoIntevalo(int n1, int n2)
 {
     if(n1 < 2) n1 = 2;
-    int tamanholista = n2 - n1;
+    int tamanholista = (n2 - n1) + 1;
     int arraydocrivo[tamanholista];
     int arrayprimos[tamanholista];
 
@@ -15,41 +16,50 @@ void CrivodeAratostenes(int n1, int n2)
         arraydocrivo[i] = n1 + i;
     }
 
-    int icontrole = 0;;
+    int icontrole = 0;
+    for(int i = 2; n1 > i;i++)
+    {
+        while(tamanholista > icontrole)
+        {
+            if(arraydocrivo[icontrole] % i == 0)
+            {
+                arraydocrivo[icontrole] = 0;
+            }
+            icontrole++;
+        }
+        icontrole = i - 1;
+    }
+    
+    icontrole = 0;
     int iprimo = 0;
     while(n2 >= n1)
     {
-        if(arraydocrivo[icontrole + 1] == 0)
+        if(arraydocrivo[icontrole] == n1)
         {
             arrayprimos[iprimo] = n1;
             iprimo++;
-        }
-        for(int ix = icontrole; tamanholista > ix; ix++){
-            if(arraydocrivo[ix] % n1 == 0){
-                arraydocrivo[ix] = 0;
+
+            for(int i = icontrole + 1; tamanholista > i; i++)
+            {
+                if(arraydocrivo[i] % n1 == 0)
+                {
+                    arraydocrivo[i] = 0;
+                }
             }
         }
-
-        n1++;
         icontrole++;
+        n1++;
     }
-
+    
     for(int i = 0; iprimo > i; i++)
     {
         cout << arrayprimos[i] << " ";
     }
+    if(iprimo == 0) cout << "Sem nenhum primo no intervalo" << endl;
 }
 
 int main()
 {
-    CrivodeAratostenes(2,100);
+    PrimosnoIntevalo(2147483640, 2147483647);
     return 0;
 }
-
-// int main()
-// {
-//     long long f = PotenciaModular(20, 65537, 63984317);
-//     long long g = PotenciaModular(f,28743137, 63984317);
-//     cout << f << endl;
-//     cout << g << endl;
-// }
