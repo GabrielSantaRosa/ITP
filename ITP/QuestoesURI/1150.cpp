@@ -4,23 +4,20 @@ using namespace std;
 
 int main()
 {
-    int x, y;
-    cin >> x >> y;
-    while(y < x)
+    int x,z; cin >> x >> z;
+    while(x > z)
     {
-        cin >> y;
+        cin >> z;
     }
-
     int soma = x;
-    int proximo = x + 1;
-    int qtd = 1;
+    int indice = 1;
 
-    while(soma <= y)
+    while(z >= soma)
     {
-        soma += proximo;
-        proximo++;
-        qtd++;
+        x+=1;
+        soma = soma + x;
+        indice++;
     }
-    
-    cout << 2 << endl;
+    cout << indice << endl;
+    return 0;
 }
