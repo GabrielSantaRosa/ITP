@@ -17,12 +17,14 @@ int main()
         }
     }
 
-    for(int i = 0; 12 > i; i++)
+    for(int i = 1; 12 > i; i++)
     {
-        for(int j = i + 1; 12 > j; j++)
+        int j = i;
+        while(j>=1)
         {
-            s = s + Matriz[i][j];
+            s+=Matriz[i][12-j];
             m+=1.0;
+            j--;
         }
     }
 

@@ -2,12 +2,13 @@
 #include <iomanip>
 using namespace std;
 
+
 int main()
 {
     char Acao; cin >> Acao;
-    float s = 0.0;
-    float m = 0.0;
-    float Matriz[12][12];
+    double s = 0.0;
+    double m = 0.0;
+    double Matriz[12][12];
 
     for(int i = 0; 12 > i; i++)
     {
@@ -17,11 +18,11 @@ int main()
         }
     }
 
-    for(int i = 0; 12 > i; i++)
+    for(int i = 0; 5 > i; i++)
     {
-        for(int j = i + 1; 12 > j; j++)
+        for(int j = i + 1; 10 - i >= j; j++ )
         {
-            s = s + Matriz[i][j];
+            s+=Matriz[i][j];
             m+=1.0;
         }
     }
