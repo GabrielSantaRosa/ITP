@@ -5,7 +5,7 @@ using namespace std;
 int Anos(int A, int B, double CA, double CB)
 {
     int anos = 0;
-    while(B > A)
+    while(B >= A)
     {
         int crecimentoA = floor((A * CA) / 100);
         A += crecimentoA;
